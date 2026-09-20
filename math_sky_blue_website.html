@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics: Language, Sets & Reasoning</title>
+  <style>
+    :root {
+      --sky: #87ceeb;
+      --sky-light: #eaf8ff;
+      --sky-dark: #1687b8;
+      --navy: #12344d;
+      --white: #ffffff;
+      --text: #213547;
+      --shadow: 0 10px 28px rgba(18, 52, 77, .12);
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--sky-light), #fff 45%);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #65c5ed, #b8e8fb);
+      color: var(--navy);
+      padding: 70px 20px 55px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 4rem);
+    }
+
+    header p {
+      margin: 0 auto 25px;
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(18, 52, 77, .95);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 20px;
+      font-size: .9rem;
+    }
+
+    nav a:hover { background: var(--sky-dark); }
+
+    main {
+      width: min(1100px, 92%);
+      margin: 35px auto 70px;
+    }
+
+    section {
+      background: var(--white);
+      margin: 24px 0;
+      padding: clamp(22px, 4vw, 38px);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      border-top: 5px solid var(--sky);
+    }
+
+    h2 {
+      color: var(--sky-dark);
+      margin-top: 0;
+      font-size: 1.8rem;
+    }
+
+    h3 { color: var(--navy); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--sky-light);
+      padding: 18px;
+      border-radius: 15px;
+      border: 1px solid #c7edfa;
+    }
+
+    .symbol {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--sky-dark);
+    }
+
+    .math {
+      background: #f4fbff;
+      border-left: 5px solid var(--sky-dark);
+      padding: 15px 18px;
+      margin: 15px 0;
+      border-radius: 8px;
+      font-family: "Times New Roman", serif;
+      font-size: 1.2rem;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ccebf7;
+      text-align: left;
+    }
+
+    th {
+      background: #d9f3fc;
+      color: var(--navy);
+    }
+
+    .venn {
+      position: relative;
+      width: min(560px, 100%);
+      height: 280px;
+      margin: 25px auto;
+      background: #f6fcff;
+      border: 2px solid #a8dff2;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      border: 3px solid var(--sky-dark);
+      border-radius: 50%;
+      top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .circle.a {
+      left: 70px;
+      background: rgba(135, 206, 235, .35);
+    }
+
+    .circle.b {
+      left: 275px;
+      background: rgba(93, 190, 226, .28);
+    }
+
+    .circle span {
+      position: absolute;
+      top: 25px;
+    }
+
+    .intersection {
+      position: absolute;
+      left: 255px;
+      top: 135px;
+      transform: translate(-50%, -50%);
+      font-family: "Times New Roman", serif;
+      font-size: 1.1rem;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .reasoning {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .reasoning article {
+      padding: 22px;
+      border-radius: 16px;
+      background: var(--sky-light);
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--sky-dark);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: .8rem;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: var(--navy);
+      color: white;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 15px;
+      color: white;
+    }
+  </style>
+</head>
+<body id="top">
+
+<header>
+  <h1>Mathematics: Language, Sets & Reasoning</h1>
+  <p>A simple sky-blue learning website covering mathematical symbols, expressions, sets, set-builder notation, Venn diagrams, and deductive & inductive reasoning.</p>
+</header>
+
+<nav>
+  <a href="#language">Language & Symbols</a>
+  <a href="#expression">Expressions</a>
+  <a href="#sets">Sets</a>
+  <a href="#builder">Set-Builder</a>
+  <a href="#types">Types of Sets</a>
+  <a href="#venn">Venn Diagram</a>
+  <a href="#reasoning">Reasoning</a>
+</nav>
+
+<main>
+  <section id="language">
+    <h2>1. Mathematical Language and Symbols</h2>
+    <p>Mathematical language uses symbols, numbers, variables, and notation to communicate ideas precisely.</p>
+    <div class="cards">
+      <div class="card"><div class="symbol">+</div><b>Addition</b><br>3 + 5 = 8</div>
+      <div class="card"><div class="symbol">−</div><b>Subtraction</b><br>9 − 4 = 5</div>
+      <div class="card"><div class="symbol">×</div><b>Multiplication</b><br>6 × 2 = 12</div>
+      <div class="card"><div class="symbol">÷</div><b>Division</b><br>12 ÷ 3 = 4</div>
+      <div class="card"><div class="symbol">=</div><b>Equal to</b><br>7 = 7</div>
+      <div class="card"><div class="symbol">≠</div><b>Not equal to</b><br>5 ≠ 8</div>
+      <div class="card"><div class="symbol">&lt; &gt;</div><b>Inequality</b><br>3 &lt; 7, 9 &gt; 2</div>
+      <div class="card"><div class="symbol">∈</div><b>Element of</b><br>2 ∈ {1, 2, 3}</div>
+    </div>
+  </section>
+
+  <section id="expression">
+    <h2>2. Mathematical Expression</h2>
+    <p>A mathematical expression is a combination of numbers, variables, operators, and symbols. An expression does not have to contain an equals sign.</p>
+    <div class="math">3x + 7</div>
+    <div class="math">2(a + b) − 5</div>
+    <div class="math">x² + 4x + 4</div>
+    <h3>Example</h3>
+    <p>If <b>x = 4</b>, then:</p>
+    <div class="math">3x + 7 = 3(4) + 7 = 19</div>
+  </section>
+
+  <section id="sets">
+    <h2>3. Set</h2>
+    <p>A <b>set</b> is a well-defined collection of distinct objects. The objects in a set are called <b>elements</b> or <b>members</b>.</p>
+    <div class="math">A = {1, 2, 3, 4, 5}</div>
+    <p>Here, 1, 2, 3, 4, and 5 are elements of set A.</p>
+    <div class="math">2 ∈ A &nbsp;&nbsp;&nbsp; 8 ∉ A</div>
+    <p>Sets can be written using <b>roster (listing) notation</b> or <b>set-builder notation</b>.</p>
+  </section>
+
+  <section id="builder">
+    <h2>4. Set-Builder Notation</h2>
+    <p>Set-builder notation describes a set by stating a rule or condition that its elements satisfy.</p>
+    <div class="math">A = {x | x is a natural number and x &lt; 6}</div>
+    <p>The vertical bar <b>|</b> means “such that.” The same set can be listed as:</p>
+    <div class="math">A = {1, 2, 3, 4, 5}</div>
+    <h3>Another example</h3>
+    <div class="math">B = {x ∈ ℤ | −2 ≤ x ≤ 2}</div>
+    <p>Therefore:</p>
+    <div class="math">B = {−2, −1, 0, 1, 2}</div>
+  </section>
+
+  <section id="types">
+    <h2>5. Different Types of Sets</h2>
+    <table>
+      <tr><th>Type</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td>Empty / Null Set</td><td>Has no elements.</td><td>∅ or { }</td></tr>
+      <tr><td>Singleton Set</td><td>Has exactly one element.</td><td>{7}</td></tr>
+      <tr><td>Finite Set</td><td>Has a limited number of elements.</td><td>{a, b, c}</td></tr>
+      <tr><td>Infinite Set</td><td>Has infinitely many elements.</td><td>{1, 2, 3, ...}</td></tr>
+      <tr><td>Equal Sets</td><td>Contain exactly the same elements.</td><td>{1,2,3} = {3,2,1}</td></tr>
+      <tr><td>Subset</td><td>Every element of one set belongs to another.</td><td>{1,2} ⊆ {1,2,3}</td></tr>
+      <tr><td>Universal Set</td><td>Contains all objects being considered.</td><td>U = {1,2,3,4,5}</td></tr>
+    </table>
+  </section>
+
+  <section id="venn">
+    <h2>6. Venn Diagram</h2>
+    <p>A Venn diagram represents sets using circles. Overlapping regions show elements common to two or more sets.</p>
+    <div class="venn" aria-label="Venn diagram showing sets A and B">
+      <div class="circle a"><span>A</span></div>
+      <div class="circle b"><span>B</span></div>
+      <div class="intersection">A ∩ B</div>
+    </div>
+    <div class="math">
+      A ∪ B = elements in A or B<br>
+      A ∩ B = elements common to A and B
+    </div>
+    <p><b>Example:</b> If A = {1,2,3} and B = {3,4,5}, then:</p>
+    <div class="math">A ∩ B = {3}</div>
+    <div class="math">A ∪ B = {1,2,3,4,5}</div>
+  </section>
+
+  <section id="reasoning">
+    <h2>7. Reasoning: Deductive and Inductive</h2>
+    <div class="reasoning">
+      <article>
+        <span class="tag">DEDUCTIVE</span>
+        <h3>Deductive Reasoning</h3>
+        <p>Starts with a general rule or principle and applies it to a specific case.</p>
+        <div class="math">
+          All squares have four sides.<br>
+          ABCD is a square.<br>
+          ∴ ABCD has four sides.
+        </div>
+        <p><b>Pattern:</b> General → Specific</p>
+      </article>
+
+      <article>
+        <span class="tag">INDUCTIVE</span>
+        <h3>Inductive Reasoning</h3>
+        <p>Starts with specific observations and uses them to form a general conclusion or conjecture.</p>
+        <div class="math">
+          2 + 4 = 6<br>
+          4 + 6 = 10<br>
+          6 + 8 = 14<br>
+          ∴ The sum of two consecutive even numbers is even.
+        </div>
+        <p><b>Pattern:</b> Specific → General</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Mathematics Learning Hub • Learn, Explore, Reason.</p>
+  <a class="back" href="#top">Back to top ↑</a>
+</footer>
+
+</body>
+</html>
